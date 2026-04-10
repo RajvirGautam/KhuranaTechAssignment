@@ -326,11 +326,11 @@ const statusTierThemes: Record<
   ApplicationStatus,
   { slab: string; label: string; border: string; bg: string }
 > = {
-  Applied:        { label: "Applied",      slab: "bg-sky-500",     border: "border-sky-200",     bg: "bg-sky-50/60" },
-  "Phone Screen": { label: "Phone Screen", slab: "bg-amber-500",   border: "border-amber-200",   bg: "bg-amber-50/60" },
-  Interview:      { label: "Interview",    slab: "bg-violet-500",  border: "border-violet-200",  bg: "bg-violet-50/60" },
-  Offer:          { label: "Offer",        slab: "bg-emerald-500", border: "border-emerald-200", bg: "bg-emerald-50/60" },
-  Rejected:       { label: "Rejected",     slab: "bg-rose-500",    border: "border-rose-200",    bg: "bg-rose-50/60" }
+  Applied:        { label: "Applied",      slab: "bg-sky-500",     border: "border-sky-200",     bg: "bg-sky-50/60 dark:bg-sky-950/35" },
+  "Phone Screen": { label: "Phone Screen", slab: "bg-amber-500",   border: "border-amber-200",   bg: "bg-amber-50/60 dark:bg-amber-950/35" },
+  Interview:      { label: "Interview",    slab: "bg-violet-500",  border: "border-violet-200",  bg: "bg-violet-50/60 dark:bg-violet-950/35" },
+  Offer:          { label: "Offer",        slab: "bg-emerald-500", border: "border-emerald-200", bg: "bg-emerald-50/60 dark:bg-emerald-950/35" },
+  Rejected:       { label: "Rejected",     slab: "bg-rose-500",    border: "border-rose-200",    bg: "bg-rose-50/60 dark:bg-rose-950/35" }
 };
 
 const COLUMN_ID_PREFIX = "column:";
@@ -479,7 +479,7 @@ const DraggableBoardCard = ({
         registerRef?.(element);
       }}
       style={style}
-      className={`kanban-status-card relative overflow-visible cursor-grab rounded-xl bg-white shadow-sm active:cursor-grabbing transition-[transform,box-shadow,border-color,background-color,opacity] duration-300 ${compact ? "px-2 py-1.5" : "p-3"} ${menuOpen ? "z-[70]" : isDragging ? "z-[60]" : "z-20"} ${
+      className={`kanban-status-card relative overflow-visible cursor-grab rounded-xl bg-white shadow-sm active:cursor-grabbing transition-[transform,box-shadow,border-color,background-color,opacity] duration-300 ${compact ? "px-2 py-1.5" : "p-3"} ${menuOpen ? "z-[90]" : isDragging ? "z-[80]" : "z-30"} ${
         isHighlighted
           ? "application-card-highlight border border-cyan-300 bg-cyan-50 shadow-[0_0_0_1px_rgba(34,211,238,0.6),0_0_0_16px_rgba(34,211,238,0.16),0_16px_44px_rgba(8,145,178,0.28)]"
           : ""
@@ -514,7 +514,7 @@ const DraggableBoardCard = ({
       </span>
       {topRightFollowUpBadge ? (
         <span
-          className={`pointer-events-none absolute z-[140] inline-flex items-center rounded-full font-semibold shadow-sm ${compact ? "right-2 top-0 max-w-none -translate-y-1/2 px-1.5 py-0 text-[10px]" : "right-[15%] top-0 max-w-[calc(100%-6rem)] -translate-y-1/2 px-2 py-0.5 text-[11px]"} ${topRightFollowUpBadge.className}`}
+          className={`pointer-events-none absolute z-[260] inline-flex items-center rounded-full font-semibold shadow-sm ${compact ? "right-2 top-0 max-w-none -translate-y-1/2 px-1.5 py-0 text-[10px]" : "right-[15%] top-0 max-w-[calc(100%-6rem)] -translate-y-1/2 px-2 py-0.5 text-[11px]"} ${topRightFollowUpBadge.className}`}
           title={topRightFollowUpBadge.text}
         >
           <span className="whitespace-nowrap">{topRightFollowUpBadge.text}</span>
@@ -1647,7 +1647,7 @@ export const BoardPage = () => {
                       const cards = grouped[column];
 
                       return (
-                        <div key={column} className="flex min-h-[70px] items-stretch rounded-2xl border border-slate-200/80 bg-white/60 shadow-sm">
+                        <div key={column} className="flex min-h-[70px] items-stretch rounded-2xl border border-slate-200/80 bg-white/60 shadow-sm dark:border-slate-700/80 dark:bg-slate-900/75">
                           {/* Left label slab */}
                           <div className={`${tier.slab} flex w-7 shrink-0 flex-col items-center justify-center gap-1 rounded-l-2xl`}>
                             {column === "Phone Screen" ? (
@@ -1660,7 +1660,7 @@ export const BoardPage = () => {
                                 {column}
                               </span>
                             )}
-                            <span className="grid h-4 min-w-[16px] place-items-center rounded-full bg-white/25 px-1 text-[10px] font-bold text-white">
+                            <span className="grid h-4 min-w-[16px] place-items-center rounded-full bg-white/25 px-1 text-[10px] font-bold text-white dark:bg-black/35">
                               {cards.length}
                             </span>
                           </div>
@@ -1670,7 +1670,7 @@ export const BoardPage = () => {
                             {/* Keep horizontal swipe enabled so users can reach all cards.
                                 Drag now starts only after a 1s touch hold via TouchSensor. */}
                             <div
-                              className={`no-scrollbar flex min-w-0 flex-1 items-center gap-1.5 overflow-x-auto overflow-y-visible px-1.5 py-0.5 ${tier.bg}`}
+                              className={`no-scrollbar flex min-w-0 flex-1 items-start gap-1.5 overflow-x-auto overflow-y-visible px-1.5 pb-0.5 pt-2.5 ${tier.bg}`}
                               style={{ touchAction: "pan-x" }}
                             >
                               <SortableContext
@@ -1726,7 +1726,7 @@ export const BoardPage = () => {
                               {/* Add card button always visible at end of strip */}
                               <button
                                 type="button"
-                                className="flex h-full min-h-[56px] w-9 shrink-0 flex-col items-center justify-center rounded-xl border border-dashed border-slate-300 bg-white/60 text-slate-400 transition hover:border-cyan-300 hover:text-cyan-600"
+                                className="flex h-full min-h-[56px] w-9 shrink-0 flex-col items-center justify-center rounded-xl border border-dashed border-slate-300 bg-white/60 text-slate-400 transition hover:border-cyan-300 hover:text-cyan-600 dark:border-slate-600 dark:bg-slate-900/70 dark:text-slate-500 dark:hover:border-cyan-500/70 dark:hover:text-cyan-300"
                                 onClick={() => setShowAddModal(true)}
                                 aria-label="Add application"
                               >
