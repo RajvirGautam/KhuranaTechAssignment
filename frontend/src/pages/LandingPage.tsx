@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, Navigate, useNavigate, useSearchParams } from "react-router-dom";
 import { AuthForm } from "../components/AuthForm";
+import { DarkModeToggle } from "../components/DarkModeToggle";
 import { useAuth } from "../context/AuthContext";
 
 interface LandingPageProps {
@@ -181,31 +182,27 @@ export const LandingPage = ({ authModal }: LandingPageProps) => {
               <a className="lp-nav-pill" href="#home">
                 Home
               </a>
-              <a className="lp-nav-pill" href="#hero-parameters">
+              <Link className="lp-nav-pill" to="/applications">
                 Board
-              </a>
+              </Link>
               <Link className="lp-nav-pill" to="/dashboard">
                 Dashboard
               </Link>
             </nav>
 
             <div className="ml-auto flex items-center gap-2 md:ml-4">
+              <DarkModeToggle />
               {!user ? (
-                <>
-                  <Link className="lp-nav-pill hidden sm:inline-flex" to="/login">
-                    Login
-                  </Link>
                   <Link className="lp-nav-cta" to="/login?next=%2Fapplications">
-                    Open Board
+                    Get Started
                   </Link>
-                </>
               ) : (
                 <>
                   <Link className="lp-nav-pill sm:hidden" to="/dashboard">
                     Dashboard
                   </Link>
                   <Link className="lp-nav-cta" to="/applications">
-                    Go to Board
+                    Get Started
                   </Link>
                 </>
               )}
@@ -237,7 +234,7 @@ export const LandingPage = ({ authModal }: LandingPageProps) => {
                   Learn More
                 </a>
                 <Link className="lp-primary-btn" to={user ? "/applications" : "/login?next=%2Fapplications"}>
-                  {user ? "Go to Board" : "Get Started"}
+                  Get Started
                 </Link>
               </div>
 
@@ -387,7 +384,7 @@ export const LandingPage = ({ authModal }: LandingPageProps) => {
               <div className="rounded-xl bg-white/35 p-3 sm:rounded-none sm:bg-transparent sm:p-0">
                 <p className="lp-footer-title">Account</p>
                 <div className="lp-footer-links mt-2 sm:mt-3">
-                  <Link to={user ? "/applications" : "/login?next=%2Fapplications"}>Open Board</Link>
+                  <Link to={user ? "/applications" : "/login?next=%2Fapplications"}>Get Started</Link>
                   <Link to={user ? "/dashboard" : "/login?next=%2Fdashboard"}>Dashboard</Link>
                   {!user ? <Link to="/login">Login</Link> : null}
                 </div>

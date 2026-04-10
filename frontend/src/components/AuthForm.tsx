@@ -73,15 +73,12 @@ export const AuthForm = ({
 
   return (
     <div className="mx-auto w-full max-w-md rounded-3xl border border-slate-200 bg-white/85 p-6 sm:p-8 shadow-2xl backdrop-blur">
-      <div className="mb-2 inline-flex rounded-full bg-fuchsia-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-fuchsia-600">
-        Job Tracker
-      </div>
       <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-800">{title}</h1>
       <p className="mt-2 text-sm text-slate-500">Track your applications with AI-assisted workflow.</p>
 
       {googleClientId && onGoogleLogin ? (
         <>
-          <div className="auth-google-wrap mt-6 w-full overflow-hidden rounded-xl border border-slate-200 bg-white p-1">
+          <div className="auth-google-wrap mt-6 w-full overflow-hidden">
             <GoogleLogin
               onError={() => onGoogleError?.("Google sign-in failed.")}
               onSuccess={(credentialResponse) => {
@@ -104,18 +101,16 @@ export const AuthForm = ({
             />
           </div>
 
-          {!askName ? (
-            <button
-              type="button"
-              className="mt-3 w-full rounded-xl border border-slate-200 bg-white px-4 py-2 font-semibold text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
-              disabled={loading}
-              onClick={() => {
-                void handleDummyUserSignIn();
-              }}
-            >
-              {loading ? "Please wait..." : "Dummy User Signin"}
-            </button>
-          ) : null}
+          <button
+            type="button"
+            className="mt-3 w-full rounded-full border border-slate-200 bg-white px-4 py-3 font-semibold text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+            disabled={loading}
+            onClick={() => {
+              void handleDummyUserSignIn();
+            }}
+          >
+            {loading ? "Please wait..." : "Dummy User Signin"}
+          </button>
 
           {googleError ? <p className="mt-3 text-sm text-rose-500">{googleError}</p> : null}
 
