@@ -276,21 +276,21 @@ export const LandingPage = ({ authModal }: LandingPageProps) => {
               </div>
             </div>
 
-            <div className="lp-fade-entry relative z-10 -mt-3 rounded-2xl border border-stone-200 bg-white/78 p-4 text-left shadow-sm sm:-mt-5 sm:p-6">
-              <div className="rounded-xl bg-white/58 px-3 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.55)] backdrop-blur-[1px] sm:px-4">
-                <h3 className="text-sm font-semibold text-stone-900 whitespace-nowrap sm:text-lg">How Careerflow keeps you organized</h3>
+            <div className="lp-fade-entry relative z-10 mt-2 rounded-2xl border border-stone-200 bg-white/78 p-4 text-left shadow-sm dark:border-white/10 dark:bg-white/[0.05] sm:mt-1 sm:p-6">
+              <div className="rounded-xl bg-white/58 px-3 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.55)] backdrop-blur-[1px] dark:bg-white/[0.08] dark:shadow-none sm:px-4">
+                <h3 className="text-sm font-semibold text-stone-900 whitespace-nowrap dark:text-stone-100 sm:text-lg">How Careerflow keeps you organized</h3>
               </div>
-              <div className="mt-4 grid gap-3 text-sm text-stone-600 sm:grid-cols-3">
-                <p className="rounded-xl bg-stone-50 px-3 py-3">
-                  <strong className="block text-stone-900">1. Collect</strong>
+              <div className="mt-4 grid gap-3 text-sm text-stone-600 dark:text-stone-300 sm:grid-cols-3">
+                <p className="rounded-xl bg-stone-50 px-3 py-3 dark:bg-white/[0.07]">
+                  <strong className="block text-stone-900 dark:text-stone-100">1. Collect</strong>
                   Add roles quickly from job descriptions and direct job links AI will scrape.
                 </p>
-                <p className="rounded-xl bg-stone-50 px-3 py-3">
-                  <strong className="block text-stone-900">2. Track</strong>
+                <p className="rounded-xl bg-stone-50 px-3 py-3 dark:bg-white/[0.07]">
+                  <strong className="block text-stone-900 dark:text-stone-100">2. Track</strong>
                   Move applications through each stage.
                 </p>
-                <p className="rounded-xl bg-stone-50 px-3 py-3">
-                  <strong className="block text-stone-900">3. Execute</strong>
+                <p className="rounded-xl bg-stone-50 px-3 py-3 dark:bg-white/[0.07]">
+                  <strong className="block text-stone-900 dark:text-stone-100">3. Execute</strong>
                   Follow up on time and close with confidence.
                 </p>
               </div>
