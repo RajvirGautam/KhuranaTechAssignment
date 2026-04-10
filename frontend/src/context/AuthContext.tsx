@@ -17,7 +17,7 @@ interface AuthContextValue {
   loginWithGoogle: (credential: string) => Promise<void>;
   register: (email: string, password: string, name: string) => Promise<void>;
   updateDisplayName: (name: string) => Promise<void>;
-  logout: () => void;
+  logout: () => Promise<void>;
 }
 
 const TOKEN_KEY = "job_tracker_token";
@@ -72,9 +72,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setUser(response.user);
   }, []);
 
-  const logout = useCallback(() => {
-    localStorage.removeItem(TOKEN_KEY);
-    setUser(null);
+  const logout = useCallback(async () => {
+    try {
+      await authApi.logout();
+    } catch {
+      // Always clear local auth state even if backend logout request fails.
+    } finally {
+      localStorage.removeItem(TOKEN_KEY);
+      setUser(null);
+    }
   }, []);
 
   const value = useMemo(

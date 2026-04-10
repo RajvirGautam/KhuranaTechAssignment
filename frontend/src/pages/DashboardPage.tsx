@@ -311,8 +311,8 @@ export const DashboardPage = () => {
     }
   };
 
-  const confirmLogout = () => {
-    logout();
+  const confirmLogout = async () => {
+    await logout();
     window.location.replace("/");
   };
 

@@ -60,6 +60,10 @@ export const authApi = {
     const response = await api.post<AuthResponse>("/auth/google", payload);
     return response.data;
   },
+  logout: async (): Promise<{ message: string }> => {
+    const response = await api.post<{ message: string }>("/auth/logout");
+    return response.data;
+  },
   me: async (): Promise<{ user: User }> => {
     const response = await api.get<{ user: User }>("/auth/me");
     return response.data;
