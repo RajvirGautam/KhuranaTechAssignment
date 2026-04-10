@@ -1,4 +1,4 @@
-# AI Job Application Tracker
+# Careerflow - AI Job Application Tracker
 
 A full-stack TypeScript web app for tracking job applications in a Kanban board with AI-assisted job description parsing and resume bullet point suggestions.
 
