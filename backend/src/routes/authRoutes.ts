@@ -28,6 +28,10 @@ const googleAuthSchema = z.object({
 
 const googleClient = new OAuth2Client(env.GOOGLE_CLIENT_ID);
 
+const logAuthEvent = (event: string, email: string) => {
+  console.log(`[AUTH] ${event} | email=${email}`);
+};
+
 const deriveFallbackName = (email: string) => {
   const localPart = email.split("@")[0] ?? "there";
   const normalized = localPart.replace(/[._-]+/g, " ").trim();
@@ -91,6 +95,8 @@ router.post("/login", async (req, res) => {
     res.status(401).json({ message: "Invalid credentials" });
     return;
   }
+
+  logAuthEvent("LOGIN_SUCCESS", user.email);
 
   res.json(buildAuthResponse(user));
 });
@@ -174,6 +180,11 @@ router.get("/me", authMiddleware, async (req, res) => {
       name: user.name?.trim() ? user.name : deriveFallbackName(user.email)
     }
   });
+});
+
+router.post("/logout", authMiddleware, (req, res) => {
+  logAuthEvent("LOGOUT", req.user?.email ?? "unknown");
+  res.status(200).json({ message: "Logged out" });
 });
 
 const updateNameHandler = async (req: Request, res: Response) => {
