@@ -360,7 +360,7 @@ export const DashboardPage = () => {
               to="/applications"
               className="rounded-full bg-indigo-500 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-indigo-400 md:hidden"
             >
-              Back to Board
+              Board
             </NavLink>
 
             <button
