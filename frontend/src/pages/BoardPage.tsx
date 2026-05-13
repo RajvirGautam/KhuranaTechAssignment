@@ -595,13 +595,13 @@ const DraggableBoardCard = ({
           ) : null}
         </div>
       ) : null}
-      <p className={`relative z-10 font-bold text-slate-700 line-clamp-2 ${compact ? "mt-0.5 text-[12px] leading-tight" : "mt-2 text-[15px] leading-snug"}`} title={card.company}>{card.company}</p>
-      <p className={`relative z-10 text-slate-500 line-clamp-2 ${compact ? "mt-0 text-[10px]" : "mt-1 text-xs"}`} title={card.role}>{card.role}</p>
+      <p className={`relative z-10 font-bold text-slate-700 line-clamp-2 ${compact ? "mt-0.5 text-[12px] leading-tight" : "mt-2 text-[15px] leading-snug"} ${card.status === "Rejected" ? "opacity-40" : ""}`} title={card.company}>{card.company}</p>
+      <p className={`relative z-10 text-slate-500 line-clamp-2 ${compact ? "mt-0 text-[10px]" : "mt-1 text-xs"} ${card.status === "Rejected" ? "opacity-40" : ""}`} title={card.role}>{card.role}</p>
       <div className={`relative z-10 flex items-center justify-between gap-2 text-xs text-slate-400 ${compact ? "mt-1" : "mt-4"}`}>
         <span>{new Date(card.dateApplied).toLocaleDateString()}</span>
         
         {compensationText ? (
-          <span className={`relative ml-auto inline-flex min-w-0 items-center gap-1.5 rounded-full border border-emerald-400/80 bg-emerald-100/90 px-2 py-0.5 ${compact ? "max-w-[88%]" : "max-w-[82%] lg:max-w-[86%]"}`}>
+          <span className={`relative ml-auto inline-flex min-w-0 items-center gap-1.5 rounded-full border border-emerald-400/80 bg-emerald-100/90 px-2 py-0.5 ${compact ? "max-w-[88%]" : "max-w-[82%] lg:max-w-[86%]"} ${card.status === "Rejected" ? "opacity-40 grayscale" : ""}`}>
             <span className="relative z-10 min-w-0 flex-1 overflow-hidden">
               <span className="block truncate pr-1 text-[12.5px] font-[750] italic tracking-tight text-[#474747]" title={compensationText}>{compensationText}</span>
             </span>
